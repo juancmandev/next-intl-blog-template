@@ -37,7 +37,7 @@ export async function generateMetadata(
       ],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: content.title,
       description: content.description,
       creator: '@juancmandev',
