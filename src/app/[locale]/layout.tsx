@@ -19,6 +19,7 @@ export function generateStaticParams() {
 export default async function RootLayout(props: TRootLayout) {
   if (!props.params.locale.includes(props.params.locale as any)) notFound();
 
+  // https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
   unstable_setRequestLocale(props.params.locale);
 
   let messages;
