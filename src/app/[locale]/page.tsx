@@ -1,6 +1,7 @@
 import { Mdx } from '@/components';
 import { locales } from '@/lang/locales';
 import { getContent } from '@/lib/getContent';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 type TParamsLocale = {
@@ -8,6 +9,33 @@ type TParamsLocale = {
     locale: locales;
   };
 };
+
+export async function generateMetadata(
+  props: TParamsLocale
+): Promise<Metadata> {
+  const content = await getContent(props.params.locale, 'home', 'content');
+
+  if (!content) {
+    return {};
+  }
+
+  return {
+    title: content.title,
+    description: content.description,
+    openGraph: {
+      title: content.title,
+      description: content.description,
+      type: 'website',
+      locale: props.params.locale,
+    },
+    twitter: {
+      card: 'summary',
+      title: content.title,
+      description: content.description,
+      creator: '@juancmandev',
+    },
+  };
+}
 
 export default async function Home(props: TParamsLocale) {
   const content = await getContent(props.params.locale, 'home', 'content');
