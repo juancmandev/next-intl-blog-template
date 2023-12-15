@@ -20,7 +20,7 @@ export function generateStaticParams() {
 export default async function RootLayout(props: TRootLayout) {
   let messages;
   try {
-    messages = (await import(`@/lang/${props.params.locale}.json`)).default;
+    messages = (await import(`../../lang/${props.params.locale}.json`)).default;
   } catch (error) {
     notFound();
   }
