@@ -27,12 +27,26 @@ export async function generateMetadata(
       description: content.description,
       type: 'website',
       locale: props.params.locale,
+      images: [
+        {
+          url: content.image || '',
+          width: 1200,
+          height: 675,
+          alt: content.imageCaption,
+        },
+      ],
     },
     twitter: {
       card: 'summary',
       title: content.title,
       description: content.description,
       creator: '@juancmandev',
+      images: {
+        width: 1200,
+        height: 675,
+        url: content.image || '',
+        alt: content.imageCaption,
+      },
     },
   };
 }
