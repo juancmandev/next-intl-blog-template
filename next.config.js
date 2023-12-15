@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const withNextIntl = require('next-intl/plugin')();
+const { withContentlayer } = require('next-contentlayer');
 
-module.exports = nextConfig
+module.exports = withNextIntl(withContentlayer({}));

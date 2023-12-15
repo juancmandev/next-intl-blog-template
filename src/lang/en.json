@@ -1,0 +1,17 @@
+{
+  "hello": "Hello",
+  "common": {
+    "current": "(current)"
+  },
+  "change_language": {
+    "title": "Change language",
+    "en": "🇺🇸 English",
+    "es": "🇲🇽 Spanish"
+  },
+  "toggle_theme": {
+    "title": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}
