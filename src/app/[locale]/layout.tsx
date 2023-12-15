@@ -36,7 +36,7 @@ export default async function RootLayout(props: TRootLayout) {
             disableTransitionOnChange
           >
             <Header locale={props.params.locale} />
-            <main className='px-5 pt-40 pb-20'>{props.children}</main>
+            <main className='px-5 pt-36 pb-16'>{props.children}</main>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
