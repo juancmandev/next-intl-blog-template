@@ -1,4 +1,4 @@
-import { locales } from '@/locales';
+import { locales } from '@/lang/locales';
 import { allEnContents, allEsContents } from 'contentlayer/generated';
 
 export async function getAllContent(locale: locales, type: string) {

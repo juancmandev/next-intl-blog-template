@@ -1,5 +1,5 @@
 import { Mdx } from '@/components';
-import { locales } from '@/locales';
+import { locales } from '@/lang/locales';
 import { getContent } from '@/lib/getContent';
 import { notFound } from 'next/navigation';
 

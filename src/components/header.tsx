@@ -1,4 +1,4 @@
-import { locales } from '@/locales';
+import { locales } from '@/lang/locales';
 import { ChangeLanguage, ToggleTheme } from '.';
 import Link from 'next/link';
 import { Button } from './ui/button';
