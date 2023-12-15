@@ -43,6 +43,7 @@
     "@types/rss": "^0.0.32",
     "@types/showdown": "^2.0.6",
     "autoprefixer": "^10.0.1",
+    "esbuild": "^0.19.9",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "gray-matter": "^4.0.3",
