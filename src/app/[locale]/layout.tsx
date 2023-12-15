@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { localesList, type locales } from '@/locales';
 import { Header } from '@/components';
 import { ThemeProvider } from '@/providers/theme';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 type TRootLayout = {
   children: React.ReactNode;
@@ -12,12 +13,14 @@ type TRootLayout = {
 };
 
 export function generateStaticParams() {
-  return localesList.map((locale) => ({
-    locale: locale,
-  }));
+  return localesList.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout(props: TRootLayout) {
+  if (!props.params.locale.includes(props.params.locale as any)) notFound();
+
+  unstable_setRequestLocale(props.params.locale);
+
   let messages;
   try {
     messages = (await import(`@/lang/${props.params.locale}.json`)).default;
