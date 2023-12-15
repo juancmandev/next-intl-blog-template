@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { localesList, type locales } from '@/lang/locales';
+import { localesList, type locales } from '@/locales';
 import { Header } from '@/components';
 import { ThemeProvider } from '@/providers/theme';
 

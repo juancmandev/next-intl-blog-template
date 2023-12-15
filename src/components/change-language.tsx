@@ -1,6 +1,6 @@
 'use client';
 
-import { locales, localesList } from '@/lang/locales';
+import { locales, localesList } from '@/locales';
 import { BookA } from 'lucide-react';
 import { Button } from './ui/button';
 import {

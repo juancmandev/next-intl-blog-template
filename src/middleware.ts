@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, NextRequest } from 'next/server';
-import { localesList } from './lang/locales';
+import { localesList } from './locales';
 
 export async function middleware(req: NextRequest) {
   const intlMiddleware: (request: NextRequest) => NextResponse<unknown> =
