@@ -1,0 +1,102 @@
+## Cómo usar
+
+Este template es una extensión de [next-intl](https://next-intl-docs.vercel.app/), revisa la [guía de inicio](https://next-intl-docs.vercel.app/docs/getting-started) para aprender lo básico, el propósito del template es crear un layout simple para futuras personalizaciones.
+
+### Agregar o quitar locales
+
+Puedes agregar o remover locales en el archivo *src/lang/locales.ts*.
+
+<CodeBlock title='src/lang/locales.ts' language='typescript' code={`export type locales = 'en' | 'es';
+
+export const localesList: locales[] = ['en', 'es'];
+`} />
+
+Solo agrega o remueve un locale de la constante *locales*, y agrega o remueve el locale de la lista.
+
+El primer item de la lista debe ser el locale por defecto.
+
+La lista es usada para la generación estática de las rutas en *{`src/app/[locale]/layout.tsx`}*.
+
+<CodeBlock title='src/app/[locale]/layout.tsx' language='typescript' code={`import { localesList } from '@/lang/locales';
+
+export function generateStaticParams() {
+  return localesList.map((locale) => ({ locale }));
+}`} />
+
+Recuerda actualizar el matcher en *src/middleware.ts*.
+
+<CodeBlock title='src/middleware.ts' language='typescript' code={`//...
+
+export const config = {
+  matcher: ['/', '/(en|es)/:path*'],
+};
+`} />
+
+Y por supuesto, actualiza los archivos *{`src/lang/[locale].json`}*.
+
+### Crear contenido
+
+Usa *{`src/content/[locale]`}* para crear contenido, en el directorio *{`/[locale]/`}* crea un directorio para cada propósito, por ejemplo: *{`/[locale]/blog`}*.
+
+Dentro crea el archivo .mdx con un nombre único, el nombre será usado como slug para crear la página estática para ese post.
+
+Para crear una sección de blog, usarás la función *getAllContent* en tu ruta, por ejemplo: *{`src/app/[locale]/blog/[slug]/page.tsx`}*.
+
+<CodeBlock title={`src/app/[locale]/blog/[slug]/page.tsx`} language='typescript' code={`import { Mdx } from '@/components';
+import { TParamsLocale, TPage, TSlugLang } from '@/types';
+import { Metadata } from 'next';
+import { getAllContent, getContent } from '@/utils/getContent';
+
+export async function generateStaticParams(
+  props: TParamsLocale
+): Promise<TSlugLang[]> {
+  const blogs = await getAllContent(props.params.locale, 'blog');
+
+  if (!blogs) return [];
+
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+    locale: props.params.locale,
+  }));
+}
+
+//...
+`} />
+
+Esto creará una página estática para cada post de blog.
+
+Puedes obtener la metadata del archivo .mdx también.
+
+<CodeBlock title={`src/app/[locale]/blog/[slug]/page.tsx`} language='typescript' code={`//...
+
+export async function generateMetadata(props: TPage): Promise<Metadata> {
+  const blog = await getContent(props.params.locale, 'blog', props.params.slug);
+
+  if (!blog) return {};
+
+  return {
+    title: blog.title,
+    //...
+  };
+}
+
+//...`} />
+
+Entonces, renderiza el contenido usando el componente *Mdx*.
+
+<CodeBlock title='src/app/[locale]/blog/[slug]/page.tsx' language='typescript' code={`//...
+
+export default async function Page(props: TPage) {
+  const post = await getContent(props.params.locale, 'blog', props.params.slug);
+
+  if (!post) return null;
+
+  return <Mdx code={post.body.code} />;
+}
+`} />
+
+[Puedes hacer un fork de este template aquí](https://github.com/juancmandev/next-intl-blog-template)
+
+## Contacto
+
+Si te interesa **trabajar juntos** en un website con internacionalización con Next.js, envíame un correo a [contact@juancman.dev](mailto:contact@juancman.dev)

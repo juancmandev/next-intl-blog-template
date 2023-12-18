@@ -13,5 +13,8 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "header": {
+    "how_to_use": "How to use"
   }
 }

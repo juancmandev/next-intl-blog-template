@@ -30,7 +30,7 @@ export default async function RootLayout(props: TRootLayout) {
   }
 
   return (
-    <html lang={props.params.locale}>
+    <html lang={props.params.locale} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider

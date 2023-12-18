@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { cn } from '@/lib/utils';
+import { CodeBlock } from '.';
 
 const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -72,6 +73,9 @@ const components = {
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code {...props} />
+  ),
+  CodeBlock: (props: { title: string; language: string; code: string }) => (
+    <CodeBlock {...props} />
   ),
   Image,
 };

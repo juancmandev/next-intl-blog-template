@@ -21,6 +21,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -40,7 +41,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "contentlayer.config.js"
+    "contentlayer.config.js",
+    "src/app/[locale]/how-to-use"
   ],
   "exclude": [
     "node_modules"
